@@ -8,7 +8,7 @@
 <meta name="author" content="Kalle Rosenbaum, Linnéa Rosenbaum">
 <title>Bitcoin development philosophy</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css">
+<link rel="stylesheet" href="style/asciidoctor.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="style/btcphilosophy.css">
 <script type="text/x-mathjax-config">
@@ -132,7 +132,7 @@ MathJax.Hub.Config({
 <li><a href="#responsible-disclosure">9.1. Responsible disclosure</a></li>
 <li><a href="#_traumatic_childhood">9.2. Traumatic childhood</a>
 <ul class="sectlevel3">
-<li><a href="#_2010_07_28_spend_anyones_coins_cve_2010_5141">9.2.1. 2010-07-28: Spend anyone&#8217;s coins (CVE-2010-5141)</a></li>
+<li><a href="#cve-2010-5141">9.2.1. 2010-07-28: Spend anyone&#8217;s coins (CVE-2010-5141)</a></li>
 <li><a href="#combined-output-overflow">9.2.2. 2010-08-15 Combined output overflow (CVE-2010-5139)</a></li>
 <li><a href="#march2013split">9.2.3. 2013-03-11 DB locks issue 0.7.2 - 0.8.0 (CVE-2013-3220)</a></li>
 <li><a href="#bip66-splits">9.2.4. BIP66</a></li>
@@ -213,13 +213,10 @@ control. We have therefore saved the linked articles locally in this
 repository, along with info on where it was copied from, and when. The
 resources are collected in <a href="sources/sources.html">a separate
 document</a> (<code>sources/sources.adoc</code>) organized by the chapter they are
-linked from.</p>
-</div>
-<div class="paragraph">
-<p>The links throughout the chapters refer to the original sources, but
-if you don&#8217;t have an internet connection, the links appear dead, or
-the content seems severely changed, you can read the content locally
-instead.</p>
+linked from. The links found in the chapters refer to the original
+sources, but if you don&#8217;t have an internet connection, the links
+appear dead, or the content seems severely changed, you can read the
+content locally instead.</p>
 </div>
 </div>
 <div class="sect2">
@@ -249,22 +246,28 @@ about Bitcoin development.</p>
 <div class="sect1">
 <h2 id="decentralization"><a class="anchor" href="#decentralization"></a>1. Decentralization</h2>
 <div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="images/decentralization-banner.jpg" alt="decentralization banner">
+</div>
+</div>
 <div class="paragraph">
 <p>This chapter will discuss what decentralization is and why it’s
-essential. We’ll distinguish between the decentralization of miners
-and full nodes and discuss what they bring to the table for Bitcoin’s
-censorship resistance, one of the most central properties of Bitcoin.
-The discussion then shifts towards understanding neutrality, or
-permissionlessness towards users, miners, and developers, which is
-a necessary property of a decentralized system. Lastly, we’ll
-touch upon how hard it can be to grasp a decentralized system like
-Bitcoin and present some mental models that might help you grok it.</p>
+essential for Bitcoin to function. We’ll distinguish between the
+decentralization of miners and that of full nodes and discuss what
+they bring to the table for Bitcoin’s censorship resistance, one of
+the most central properties of Bitcoin.  The discussion then shifts
+towards understanding neutrality, or permissionlessness towards users,
+miners, and developers, which is a necessary property of a
+decentralized system. Lastly, we’ll touch upon how hard it can be to
+grasp a decentralized system like Bitcoin and present some mental
+models that might help you grok it.</p>
 </div>
 <div class="paragraph">
 <p>A system without a central point of control is referred to as being
-<em>decentralized</em>. Bitcoin is decentralized to avoid having a central point
+<em>decentralized</em>. Bitcoin is designed to avoid having a central point
 of control, or more specifically, a <em>central point of censorship</em>.
-Decentralization in Bitcoin is a means to an end: <em>censorship resistance</em>.</p>
+Decentralization is a means to achieve <em>censorship resistance</em>.</p>
 </div>
 <div class="paragraph">
 <p>There are two major aspects of decentralization in Bitcoin: Miner
@@ -324,31 +327,31 @@ since each signer can fail, or be made to fail, one by one.</p>
 </div>
 <div class="paragraph">
 <p>It became clear that using a central server to order transactions was
-not a viable option due to the high risk of censorship. Even if you replace the
-central server with a federation of a fixed set of \$n\$ servers,
-of which at least \$m, m \leq n\$ must all approve of an
-ordering. The problem then shifts to one where users must agree on
-this set of \$n\$ servers and how users replace malicious
-servers with good ones without using a central authority.</p>
+not a viable option due to the high risk of censorship. Even if you
+replace the central server with a federation of a fixed set of
+\$n\$ servers, of which at least \$m, m \leq n\$ must all
+approve of an ordering, you also run into problems. The problem then
+shifts to one where users must agree on this set of \$n\$ servers
+and how users replace malicious servers with good ones without using a
+central authority.</p>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s contemplate what could happen in practice if Bitcoin were
-censorable. The censor would apply pressure on users. They could
-require identification, that users declare where their money is coming
-from or what they&#8217;re buying before their transactions are allowed to
-enter the blockchain.</p>
+<p>Let&#8217;s contemplate what could happen if Bitcoin were censorable. The
+censor could pressure users to require identification, that users
+declare where their money is coming from, or what they&#8217;re buying
+before their transactions are allowed to enter the blockchain.</p>
 </div>
 <div class="paragraph">
-<p>Also, the lack of censorship resistance would allow the censor
-to coerce users into adopting new system rules. For example,
-they can force a change where they are allowed to inflate the money
-supply to enrich themselves. In such an event, a user verifying blocks has
-three options for how to handle the changed rules:</p>
+<p>Also, the lack of censorship resistance would allow the censor to
+coerce users into adopting new system rules. For example, they can
+force a change that allows them to inflate the money supply to enrich
+themselves. In such an event, a user verifying blocks has three
+options for how to handle the changed rules:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Adopt: Accept the changes and adopt them into its full node.</p>
+<p>Adopt: Accept the changes and adopt them into their full node.</p>
 </li>
 <li>
 <p>Reject: This leaves the user with a system that doesn&#8217;t process
@@ -445,9 +448,9 @@ decentralization.</p>
 <div class="sect2">
 <h3 id="_full_node_decentralization"><a class="anchor" href="#_full_node_decentralization"></a>1.2. Full node decentralization</h3>
 <div class="paragraph">
-<p>We&#8217;ve mostly talked about miner decentralization above and how centralization
-can allow for censorship. But there&#8217;s also another aspect of decentralization,
-which is full node decentralization.</p>
+<p>We&#8217;ve mostly talked about miner decentralization above and how that
+centralization can allow for censorship. But there&#8217;s also another
+aspect of decentralization, which is <em>full node decentralization</em>.</p>
 </div>
 <div class="paragraph">
 <p>The importance of full node decentralization is related to
@@ -461,42 +464,23 @@ trusted entity. In that case, the network can quickly spiral into centralization
 network rules can be changed by conspiring malicious actors.</p>
 </div>
 <div class="paragraph">
-<p>Aaron Van Wirdum of Bitcoin Magazine
-writes in
-<a href="https://bitcoinmagazine.com/technical/decentralist-perspective-bitcoin-might-need-small-blocks-1442090446">his
-Bitcoin Magazine article</a> about decentralization:</p>
-</div>
-<div class="quoteblock">
-<blockquote>
-<div class="paragraph">
-<p>An obvious consequence would be that it injects trust in the
-system. Instead of using trustless full nodes, users would, for
-instance, use web-wallets – which obviously require a lot of trust in
-the service. But even solutions such as Simplified Payments
-Verification (SPV) nodes are no better in this regard, as they do not
-verify the consensus rules either.</p>
-</div>
-</blockquote>
-<div class="attribution">
-&#8212; Aaron Van Wirdum<br>
-<cite>Bitcoin Magazine</cite>
-</div>
-</div>
-<div class="paragraph">
-<p>In the article, Van Wirdum interviews Bitcoin developers about their views on
-decentralization and the risks involved in increasing
-Bitcoin&#8217;s maximum block size. This discussion was a hot topic during the 2014-2017 era
-when many people argued over increasing the block size limit to
-allow for more transaction throughput.</p>
+<p>In
+<a href="https://bitcoinmagazine.com/technical/decentralist-perspective-bitcoin-might-need-small-blocks-1442090446">a
+Bitcoin Magazine article</a>, Aaron van Wirdum interviews Bitcoin
+developers about their views on decentralization and the risks
+involved in increasing Bitcoin&#8217;s maximum block size. This discussion
+was a hot topic during the 2014-2017 era when many people argued over
+increasing the block size limit to allow for more transaction
+throughput.</p>
 </div>
 <div class="paragraph">
 <p>A powerful argument against increasing the block size is that it
 increases the cost of verification (see <a href="#_vertical_scaling">the
-Scaling chapter</a>). If verification cost rises, it will push some
-full node users to stop running their full nodes. This, in turn, leads
-to more people not being able to use the system in a
+Scaling chapter</a>). If verification cost rises, it will push some full
+node users to stop running their full nodes. This, in turn, leads to
+more people not being able to use the system in a
 trustless way. Pieter Wuille is quoted in the article, where he
-explains the risks in full node centralization.</p>
+explains the risks of full node centralization.</p>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -550,7 +534,7 @@ Bitcoin.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>If <strong>mining</strong> would have been a permissioned process, you&#8217;d need a
+<p>If <strong>mining</strong> had been a permissioned process, you&#8217;d need a
 central authority to select who&#8217;s allowed to mine. This would most
 likely lead to miners having to sign legal contracts where they agree
 to censor transactions according to the whims of the central
@@ -603,7 +587,10 @@ few actually used ones of these.</p>
 </div>
 <div class="paragraph">
 <p>He describes that to achieve permissionlessness, the system [most
-likely] needs its own currency.</p>
+likely] needs its own currency, &#8220;limiting the use cases to
+effectively just cryptocurrencies&#8221;. This is because permissionless
+participation, or mining, requires economic incentives built into the
+system itself.</p>
 </div>
 </div>
 <div class="sect2">
@@ -686,6 +673,11 @@ about it. It&#8217;s a thing to be studied, not debated.</p>
 <div class="sect1">
 <h2 id="trustlessness"><a class="anchor" href="#trustlessness"></a>2. Trustlessness</h2>
 <div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="images/trustlessness-banner.jpg" alt="trustlessness banner">
+</div>
+</div>
 <div class="paragraph">
 <p>This chapter dissects trustlessness, what it means from a computer
 science perspective, and why Bitcoin has to be trustless to retain its
@@ -720,10 +712,10 @@ require any trusted parties to function correctly.</p>
 protocol that means it can logically function without "any trusted
 parties". This is different from the trust that you inevitably have to
 put into the software or hardware you run. More on this trust further
-down this article.</p>
+down this chapter.</p>
 </div>
 <div class="paragraph">
-<p>In centralized systems, we can rely on a central actor&#8217;s reputation
+<p>In centralized systems, we rely on a central actor&#8217;s reputation
 that they&#8217;ve taken care of security, or roll back in case of issues,
 and on the legal system to enforce violations. These trust
 requirements are problematic in pseudonymous decentralized systems. We
@@ -876,7 +868,7 @@ might not be programmed to do what&#8217;s stated on the box. For example:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>The CPU might be maliciously programmed to detect private key
+<p>The CPU might be maliciously designed to detect private key
 cryptographic operations and leak the private key data.</p>
 </li>
 <li>
@@ -925,7 +917,7 @@ a presentation about Guix</a>
 (<a href="https://www.youtube.com/watch?v=I2iShmUTEl8">video</a>) that explains why
 trusting the operating system, libraries, and compilers can be
 problematic and how to fix that with a system called Guix, which is
-used by Bitcoin today.</p>
+used by Bitcoin Core today.</p>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -981,14 +973,14 @@ importance of running a full node</a>.</p>
 </div>
 <div class="paragraph">
 <p>It&#8217;s up to the users to decide to what degree they want to verify the
-software they use and the data they receive. As with so many other
-things in Bitcoin, there&#8217;s a trade-off between convenience and
-trustlessness. It&#8217;s almost always more convenient to use a custodial
-wallet compared to running Bitcoin Core on your own hardware. However,
-as Bitcoin software is maturing and user interfaces improve, over time
-it should better support users to work towards trustlessness. Also, as
-users gain more knowledge over time, they should be able to gradually
-remove trust from the equation.</p>
+software they use and the blockchain data they receive. As with so
+many other things in Bitcoin, there&#8217;s a trade-off between convenience
+and trustlessness. It&#8217;s almost always more convenient to use a
+custodial wallet compared to running Bitcoin Core on your own
+hardware. However, as Bitcoin software is maturing and user interfaces
+improve, over time it should better support users wanting to work
+towards trustlessness. Also, as users gain more knowledge over time,
+they should be able to gradually remove trust from the equation.</p>
 </div>
 <div class="paragraph">
 <p>Some users <a href="#adversarialthinking">think adversarially</a> and verify
@@ -1020,13 +1012,15 @@ vulnerability with the same root cause and fix.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Here an anonymous person reported an issue that turned out much worse than the
-reporter realized. This highlights that people who verify the code often report
-security flaws instead of exploiting them. This is beneficial to those who
-aren&#8217;t able to verify everything themselves. However, users should not trust
-others to keep them safe but should verify when and what they can; that&#8217;s how
-you remain as sovereign as possible and how Bitcoin prospers. The more eye-balls
-on the software the less likely it is that security flaws slip through.</p>
+<p>Here an anonymous person reported an issue that turned out much worse
+than the reporter realized. This highlights that people who verify the
+code often report security flaws instead of exploiting them. This is
+beneficial to those who aren&#8217;t able to verify everything
+themselves. However, users should not trust others to keep them safe
+but should verify when and what they can; that&#8217;s how you remain as
+sovereign as possible and how Bitcoin prospers. The more eye-balls on
+the software the less likely it is that malicious code and security
+flaws slip through.</p>
 </div>
 </div>
 </div>
@@ -1034,6 +1028,11 @@ on the software the less likely it is that security flaws slip through.</p>
 <div class="sect1">
 <h2 id="privacy"><a class="anchor" href="#privacy"></a>3. Privacy</h2>
 <div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="images/privacy-banner.jpg" alt="privacy banner">
+</div>
+</div>
 <div class="paragraph">
 <p>This chapter deals with how to keep your private financial information
 to yourself. We&#8217;ll learn what privacy means in the context of Bitcoin,
@@ -1048,7 +1047,7 @@ things you can do to improve your, and others' privacy.</p>
 <p>Bitcoin can be described as a pseudonymous, explained soon in
 <a href="#pseudonymity">Section 3.3, &#8220;Pseudonymity&#8221;</a>, system where users have multiple pseudonyms in the
 form of public keys. At first glance, this looks like a pretty good
-way to keep users from being identified, but it is in fact, really
+way to keep users from being identified, but it is in fact really
 easy to leak private financial information unintentionally.</p>
 </div>
 <div class="sect2">
@@ -1073,21 +1072,40 @@ privacy aspects you might not immediately think about. Gregory
 Maxwell,
 <a href="https://bitcointalk.org/index.php?topic=334316.msg3588908#msg3588908">on
 the Bitcoin Talk forum</a>, walks us through a lot of good reasons why he
-thinks privacy matters. Among them is <a href="#fungibility">fungibility</a>:</p>
+thinks privacy matters. Among them are free market, safety, and human
+dignity:</p>
 </div>
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
-<p>Financial privacy is an essential element to fungibility in Bitcoin:
-if you can meaningfully distinguish one coin from another, then their
-fungibility is weak. If our fungibility is too weak in practice, then
-we cannot be decentralized: if someone important announces a list of
-stolen coins they won&#8217;t accept coins derived from, you must carefully
-check coins you accept against that list and return the ones that
-fail.  Everyone gets stuck checking blacklists issued by various
-authorities because in that world we&#8217;d all not like to get stuck with
-bad coins. This adds friction and transactional costs and makes
-Bitcoin less valuable as a money.</p>
+<p>Financial privacy is an essential criteria for the efficient operation
+of a free market: if you run a business, you cannot effectively set
+prices if your suppliers and customers can see all your transactions
+against your will. You cannot compete effectively if your competition
+is tracking your sales.  Individually your informational leverage is
+lost in your private dealings if you don&#8217;t have privacy over your
+accounts: if you pay your landlord in Bitcoin without enough privacy
+in place, your landlord will see when you&#8217;ve received a pay raise and
+can hit you up for more rent.</p>
+</div>
+<div class="paragraph">
+<p>Financial privacy is essential for personal safety: if thieves can see
+your spending, income, and holdings, they can use that information to
+target and exploit you. Without privacy malicious parties have more
+ability to steal your identity, snatch your large purchases off your
+doorstep, or impersonate businesses you transact with towards
+you&#8230;&#8203; they can tell exactly how much to try to scam you for.</p>
+</div>
+<div class="paragraph">
+<p>Financial privacy is essential for human dignity: no one wants the
+snotty barista at the coffee shop or their nosy neighbors commenting
+on their income or spending habits. No one wants their baby-crazy
+in-laws asking why they&#8217;re buying contraception (or sex toys). Your
+employer has no business knowing what church you donate to. Only in a
+perfectly enlightened discrimination free world where no one has undue
+authority over anyone else could we retain our dignity and make our
+lawful transactions freely without self-censorship if we don&#8217;t have
+privacy.</p>
 </div>
 </blockquote>
 <div class="attribution">
@@ -1096,8 +1114,9 @@ Bitcoin less valuable as a money.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Maxwell also explains how privacy is important for a free market, your
-personal safety, and human dignity.</p>
+<p>Maxwell also touches on fungibility, discussed <a href="#fungibility">later in
+this chapter</a>, and how privacy and law enforcement are not
+contradictory.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1315,13 +1334,47 @@ convenience and privacy that works for you.</p>
 <div class="sect2">
 <h3 id="fungibility"><a class="anchor" href="#fungibility"></a>3.6. Fungibility</h3>
 <div class="paragraph">
-<p>Fungibility was briefly touched upon in
-<a href="#whyprivacyimportant">Section 3.2, &#8220;Why is privacy important?&#8221;</a>. Fungibility means that one coin is
-interchangeable for any other coin of the same currency. Adam Back and
-Matt Corallo
+<p>Fungibility, in the context of currencies, means that one coin is
+interchangeable for any other coin of the same currency. This funny
+word was briefly touched upon in <a href="#whyprivacyimportant">Section 3.2, &#8220;Why is privacy important?&#8221;</a>. In the
+article discussed there, Gregory Maxwell <a href="https://bitcointalk.org/index.php?topic=334316.msg3588908#msg3588908">stated</a></p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Financial privacy is an essential element to fungibility in Bitcoin:
+if you can meaningfully distinguish one coin from another, then their
+fungibility is weak. If our fungibility is too weak in practice, then
+we cannot be decentralized: if someone important announces a list of
+stolen coins they won&#8217;t accept coins derived from, you must carefully
+check coins you accept against that list and return the ones that
+fail.  Everyone gets stuck checking blacklists issued by various
+authorities because in that world we&#8217;d all not like to get stuck with
+bad coins. This adds friction and transactional costs and makes
+Bitcoin less valuable as a money.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; Gregory Maxwell<br>
+<cite>Bitcoin Talk forum</cite>
+</div>
+</div>
+<div class="paragraph">
+<p>He speaks here of the dangers of lack of fungibility. Suppose that you
+have a UTXO. That UTXO&#8217;s history can usually be traced back several
+hops, fanning out to multitudes of previous outputs. If any of those
+outputs were involved in something illegal, unwanted, or suspicious
+activity, then some potential recipients of your coin might
+reject it. If you think that your payees will verify your coins
+against some centralized whitelist or blacklist service, you might
+start checking coins you receive too, just to be on the safe side. So
+bad fungibility will bolster even worse fungibility.</p>
+</div>
+<div class="paragraph">
+<p>Adam Back and Matt Corallo
 <a href="https://btctranscripts.com/scalingbitcoin/milan-2016/fungibility-overview/">gave
 a presentation about fungibility</a> at Scaling Bitcoin in Milan
-2016. Back remarked</p>
+2016. They were thinking along the same lines:</p>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -1342,23 +1395,13 @@ the blacklist providers.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>He speaks here of the dangers of lack of fungibility. A UTXOs
-history can usually be traced back several hops, fanning out to
-multitudes of previous outputs. If any of those outputs were
-involved in something illegal, unwanted, or suspicious activity, then
-some potential recipients of your coin might reject it. If you think
-that your payees will verify your coins against some centralized
-whitelist or blacklist service, you might start checking coins you
-receive too, just to be on the safe side. So bad fungibility will
-bolster even worse fungibility.</p>
-</div>
-<div class="paragraph">
-<p>Privacy and fungibility go hand-in-hand. Fungibility will weaken if privacy is
-weak, for example, because coins from unwanted persons can become blacklisted.
-Privacy will weaken if fungibility is weak since you have to ask the blacklist
-providers about which coins to accept, possibly revealing your IP address,
-email address, and other sensitive information. They&#8217;re so intertwined that
-it&#8217;s hard to talk about them in isolation.</p>
+<p>It seems privacy and fungibility go hand-in-hand. Fungibility will
+weaken if privacy is weak, for example, because coins from unwanted
+persons can become blacklisted.  Privacy will weaken if fungibility is
+weak since you have to ask the blacklist providers about which coins
+to accept, possibly revealing your IP address, email address, and
+other sensitive information. They&#8217;re so intertwined that it&#8217;s hard to
+talk about them in isolation.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1380,7 +1423,7 @@ post also lists some things directly related to Bitcoin:</p>
 <dl>
 <dt class="hdlist1">Full node</dt>
 <dd>
-<p>if you don&#8217;t use your own full node, you will leak lots of
+<p>If you don&#8217;t use your own full node, you will leak lots of
 information about your wallet to servers on the internet. Running a
 full node is a great first step.</p>
 </dd>
@@ -1391,7 +1434,7 @@ example, the Lightning Network and Blockstream&#8217;s Liquid sidechain.</p>
 </dd>
 <dt class="hdlist1">CoinJoin</dt>
 <dd>
-<p>a way for multiple people to merge their transactions into
+<p>A way for multiple people to merge their transactions into
 one, making it harder to do address clustering.</p>
 </dd>
 </dl>
@@ -1438,15 +1481,12 @@ Bitcoin, as is the case with Lightning Network:</p>
 <div class="title">Figure 4. Layers on top of Bitcoin can add privacy.</div>
 </div>
 <div class="paragraph">
-<p>We noted in <a href="#trustlessness">Trustlessness</a> that trust can only increase with layers
-on top, but that doesn&#8217;t
-seem to be the case for privacy, which can be improved or made worse
-arbitrarily in layers on top. Why is that?</p>
-</div>
-<div class="paragraph">
-<p>Any layer on top of Bitcoin, as explained in
-<a href="#_layered_scaling">Layered scaling</a>, must use on-chain transactions
-now and then, otherwise, it wouldn&#8217;t be "on top of
+<p>We noted in <a href="#trustlessness">Trustlessness</a> that the need for trust
+can only increase with layers on top, but that doesn&#8217;t seem to be the
+case for privacy, which can be improved or made worse arbitrarily in
+layers on top. Why is that? Any layer on top of Bitcoin, as explained
+in <a href="#_layered_scaling">Layered scaling</a>, must use on-chain
+transactions now and then, otherwise, it wouldn&#8217;t be "on top of
 Bitcoin". Privacy-enhancing layers generally try to use the base layer
 as little as possible to minimize the amount of information revealed.</p>
 </div>
@@ -1507,11 +1547,16 @@ active measures, some of which are costly and time-consuming.</p>
 <div class="sect1">
 <h2 id="finitesupply"><a class="anchor" href="#finitesupply"></a>4. Finite supply</h2>
 <div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="images/finitesupply-banner.jpg" alt="finitesupply banner">
+</div>
+</div>
 <div class="paragraph">
 <p>This chapter will look into Bitcoin&#8217;s 21 million BTC supply limit, or
 how much is it actually? We&#8217;ll talk about how this limit is enforced
-and what can you do to verify that it&#8217;s being respected? We&#8217;ll then
-look into the crystal ball an have a discussion about the dynamics
+and what can you do to verify that it&#8217;s being respected. We&#8217;ll then
+look into the crystal ball and have a discussion about the dynamics
 that come into play in the future when the block reward shifts from
 being subsidy based to fee based.</p>
 </div>
@@ -1612,9 +1657,9 @@ haven&#8217;t.</p>
 </div>
 <div class="paragraph">
 <p>Even if some full nodes give themselves to the dark side and decide to
-accept blocks with larger coinbase transactions, all other full nodes
-will simply neglect them and continue as usual. Full nodes may
-intentionally or unintentionally (see the
+accept blocks with higher-value coinbase transactions, all other full
+nodes will simply neglect them and continue as usual. Some full nodes
+may intentionally or unintentionally (see the
 <a href="#combined-output-overflow">When shit hits the fan</a> chapter) run bad
 software, yet the collective robustly secures the blockchain
 together. Thus you can choose to trust the system without having to
@@ -1633,10 +1678,10 @@ secure monetary system.</p>
 <div class="paragraph">
 <p>What happens when the block subsidy is zero, or very close to zero
 (but for simplicity assume zero)? At that point, the system&#8217;s security
-budget will be paid for only through transaction fees. What the future
-holds for us when this happens, we cannot know. The uncertainty
-factors are numerous and we are left to speculations. For example Paul
-Sztorc&#8217;s contribution to the subject
+will be paid for only through transaction fees. What the future holds
+for us when this happens, we cannot know. The uncertainty factors are
+numerous and we are left to speculations. For example Paul Sztorc&#8217;s
+contribution to the subject
 <a href="https://www.truthcoin.info/blog/security-budget/">in his Truthcoin
 blog</a> is mostly speculations, but he has at least one solid point (M2,
 as Sztorc refers to, is a measurement of a fiat money supply):</p>
@@ -1671,8 +1716,9 @@ illustrated below.</p>
 incentives shift. For example, if the mempool of a miner doesn&#8217;t
 contain enough transaction fees, it might become more profitable for
 that miner to rewrite Bitcoin&#8217;s history rather than to
-extend it. Bitcoin Optech has an explainer on this behavior, called
-<em>fee sniping</em>, written by David Harding:</p>
+extend it. Bitcoin Optech has an
+<a href="https://bitcoinops.org/en/topics/fee-sniping/">explainer on this
+behavior</a>, called <em>fee sniping</em>, written by David Harding:</p>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -1730,8 +1776,7 @@ still around, it has probably evolved enormously.</p>
 <li>
 <p>If an overwhelming economic majority finds it attractive to change
 the rules and introduce for example a perpetual annual 0.1% or 1%
-monetary inflation, to ensure that the chain keeps marching forward,
-the supply of bitcoin will no longer be finite.</p>
+monetary inflation, the supply of bitcoin will no longer be finite.</p>
 </li>
 <li>
 <p>With zero block subsidy and an empty or almost empty mempool, things
@@ -1783,6 +1828,11 @@ discussion in 10-50 years when we know more. If it&#8217;s still relevant.</p>
 <div class="sect1">
 <h2 id="upgrading"><a class="anchor" href="#upgrading"></a>5. Upgrading</h2>
 <div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="images/upgrading-banner.jpg" alt="upgrading banner">
+</div>
+</div>
 <div class="paragraph">
 <p>Upgrading Bitcoin in a safe way can be extremely difficult. Some
 changes take multiple years to roll out. In this chapter we&#8217;ll learn
@@ -1832,7 +1882,7 @@ discord. Staying in harmony (consensus) is one of the biggest
 challenges in Bitcoin development. There are lots of nuances to
 upgrade mechanisms and they might be best understood by studying
 previous upgrades, so this chapter will put much focus on that, but
-We&#8217;ll start by setting the stage with some vocabulary.</p>
+we&#8217;ll start by setting the stage with some vocabulary.</p>
 </div>
 <div class="sect2">
 <h3 id="_vocabulary"><a class="anchor" href="#_vocabulary"></a>5.1. Vocabulary</h3>
@@ -1913,14 +1963,16 @@ optimizations.</p>
 </div>
 </blockquote>
 <div class="attribution">
-&#8212; Eric Lombrozo: Consensus Rules - Changing them without changing<br>
+&#8212; Eric Lombrozo: Consensus Rules - Changing them without breaking Bitcoin<br>
 <cite>Breaking Bitcoin conference 2017</cite>
 </div>
 </div>
 <div class="paragraph">
 <p>He points out that this hard fork, intentionally or not, adds
 opportunities for future soft forks, namely the Script operators
-OP_NOP1-OP_NOP10. These have been used for two soft forks so far:
+(opcodes) OP_NOP1-OP_NOP10. We&#8217;ll look more into <a href="#cve-2010-5141">this
+code change</a> in chapter 9. These opcodes have been used for two soft
+forks so far:
 <a href="https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki">BIP65</a>
 (OP_CHECKLOCKTIMEVERIFY), and
 <a href="https://github.com/bitcoin/bips/blob/master/bip-0112.mediawiki">BIP113</a>
@@ -2223,7 +2275,9 @@ different proposals.</p>
 <div class="paragraph">
 <p>From this point forward the discussions were very heated, especially
 around whether <code>lockinontimeout</code> should be <code>true</code> (as in a user
-activated soft fork) or <code>false</code> (as in a miner activated soft fork).</p>
+activated soft fork, refered to as &#8220;BIP8 with forced activation&#8221; by
+Harding) or <code>false</code> (as in a miner activated soft fork, refered to as
+&#8220;BIP8 without forced activation&#8221; by Harding).</p>
 </div>
 <div class="paragraph">
 <p>Among the proposals listed, one of them was titled &#8220;Let’s see what
@@ -2248,8 +2302,7 @@ something changed:</p>
 <div class="literalblock">
 <div class="content">
 <pre>06:42 &lt; harding&gt; roconnor: is somebody proposing BIP8(3m, false)?  I mentioned that the other day but I didn't see any responses.
-06:43 &lt;@michaelfolkson&gt; If you weren't following everything you'd be running an old version or whatever Core put out
-06:43 &lt; roconnor&gt; I have had shower thoughts of core releasing a point relase who's only different is a relase note item that reads "Do not upgrade to this version if you don't want taproot". :D
+ [...]
 06:43 &lt; willcl_ark_&gt; Amusingly, I was just thinking to myself that, vs this, the SegWit activation was actually pretty straightforward: simply a LOT=false and if it fails a UASF.
 06:43 &lt; maybehuman&gt; it's funny, "let's see what happens" (i.e. false, 3m) was a poular choice right at the beginning of this channel iirc
 06:44 &lt; roconnor&gt; harding: I think I am.  I don't know how much that is worth.  Mostly I think it would be a widely acceptable configuration based on my understanding of everyone's concerns.
@@ -2456,13 +2509,18 @@ safely deploy soft forks without causing discord?</p>
 <div class="sect1">
 <h2 id="adversarialthinking"><a class="anchor" href="#adversarialthinking"></a>6. Adversarial thinking</h2>
 <div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="images/adversarialthinking-banner.jpg" alt="adversarialthinking banner">
+</div>
+</div>
 <div class="paragraph">
 <p>This chapter addresses <em>adversarial thinking</em>, a mindset that focuses
 on what can go wrong and how adversaries might operate. We start out
 by discussing Bitcoin&#8217;s security assumptions and security model, then
-about how ordinary users can think adversarially to improve their self
-sovereignty and Bitcoin&#8217;s full node decentralization. We&#8217;ll look into
-some actual threats to Bitcoin and into the minds of
+we talk about how ordinary users can think adversarially to improve
+their self sovereignty and Bitcoin&#8217;s full node decentralization. We&#8217;ll
+look into some actual threats to Bitcoin and into the minds of
 adversaries. Lastly, we&#8217;ll talk about the <em>axiom of resistance</em> that
 might help you to understand why people are working on Bitcoin in the
 first place.</p>
@@ -2565,7 +2623,7 @@ conservative</p>
 <div class="paragraph">
 <p>He refers to these simplistic narratives as monomania, meaning that by
 focusing only on a single thing, e.g., "just HODL", you stop thinking
-about important stuff like keeping your Bitcoin secure and doing your
+about important stuff like keeping your Bitcoin secure or doing your
 best to use Bitcoin in a trustless manner.</p>
 </div>
 </div>
@@ -2645,11 +2703,9 @@ more resistance against a proposed change than there actually is.</p>
 <div class="paragraph">
 <p>This highlights how a determined state can and will do everything in
 their power to destroy their enemy, including breaking it down from
-the inside.</p>
-</div>
-<div class="paragraph">
-<p>Since Bitcoin is a form of money that competes with established fiat
-currencies, chances are that states will regard Bitcoin as an enemy.</p>
+the inside. Since Bitcoin is a form of money that competes with
+established fiat currencies, chances are that states will regard
+Bitcoin as an enemy.</p>
 </div>
 </div>
 </div>
@@ -2700,6 +2756,11 @@ adversaries. In other words, think adversarially.</p>
 <div class="sect1">
 <h2 id="opensource"><a class="anchor" href="#opensource"></a>7. Open Source</h2>
 <div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="images/opensource-banner.jpg" alt="opensource banner">
+</div>
+</div>
 <div class="paragraph">
 <p>Bitcoin is built using open source software. In this chapter we&#8217;ll see
 what this means, how maintenance of the software works, how open
@@ -3424,6 +3485,11 @@ whatever you want into your fork, and build and run your own binary.</p>
 <div class="sect1">
 <h2 id="scaling"><a class="anchor" href="#scaling"></a>8. Scaling</h2>
 <div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="images/scaling-banner.jpg" alt="scaling banner">
+</div>
+</div>
 <div class="paragraph">
 <p>In this chapter, we&#8217;ll explore how Bitcoin scales, and doesn&#8217;t
 scale. We&#8217;ll look a bit into the past to see how people have reasoned
@@ -3971,6 +4037,11 @@ Bitcoin.</p>
 <div class="sect1">
 <h2 id="whenshithitsthefan"><a class="anchor" href="#whenshithitsthefan"></a>9. When shit hits the fan</h2>
 <div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="images/shtf-banner.jpg" alt="shtf banner">
+</div>
+</div>
 <div class="paragraph">
 <p>Bitcoin is built by people. People write the software, and people then
 run this software. When a security vulnerability or a severe bug is
@@ -4221,7 +4292,7 @@ Bitcoin. We won&#8217;t cover them all, but we have selected a few that we
 find extra interesting.</p>
 </div>
 <div class="sect3">
-<h4 id="_2010_07_28_spend_anyones_coins_cve_2010_5141"><a class="anchor" href="#_2010_07_28_spend_anyones_coins_cve_2010_5141"></a>9.2.1. 2010-07-28: Spend anyone&#8217;s coins (CVE-2010-5141)</h4>
+<h4 id="cve-2010-5141"><a class="anchor" href="#cve-2010-5141"></a>9.2.1. 2010-07-28: Spend anyone&#8217;s coins (CVE-2010-5141)</h4>
 <div class="paragraph">
 <p>On July 28 2010, a pseudonymous person by the name ArtForz discovered a
 bug in version 0.3.4 that would let anyone take the coins from
