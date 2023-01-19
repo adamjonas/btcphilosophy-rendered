@@ -2767,7 +2767,7 @@ what this means, how maintenance of the software works, how open
 source software in Bitcoin allows for permissionless
 development. We&#8217;ll dip our toes into <em>selection cryptography</em> that
 deals with how to select and use libraries in cryptographic
-systems. Bitcoin&#8217;s review process is explored with followed by a
+systems. Bitcoin&#8217;s review process is explored, followed by a
 section on how Bitcoin developers get funded. The last section is
 about how Bitcoin&#8217;s open source culture can look really weird from the
 outside, and how this perceived weirdness is really a sign of good
@@ -2962,7 +2962,7 @@ build on top of Bitcoin, among them are:</p>
 <p>A payment network that allows for fast payment of
 very small amounts. Requires very few on-chain Bitcoin
 transactions. Various inter-operable implementations exist, such as
-<a href="https://github.com/ElementsProject/lightning">c-lightning</a>,
+<a href="https://github.com/ElementsProject/lightning">Core Lightning</a>,
 <a href="https://github.com/lightningnetwork/lnd">LND</a>,
 <a href="https://github.com/ACINQ/eclair">Eclair</a>, and
 <a href="https://github.com/lightningdevkit">Lightning Dev Kit</a>.</p>
@@ -2985,7 +2985,7 @@ on that sidechain. Examples include
 <dd>
 <p>Allows you to <a href="https://opentimestamps.org/">timestamp a
 document</a> on Bitcoin&#8217;s blockchain in a private way. You can then use
-that timestamp to prove that a document must have existed prior to
+that timestamp to prove that the document must have existed prior to
 that time.</p>
 </dd>
 </dl>
@@ -3108,9 +3108,9 @@ currency, to varying degrees.</p>
 <div class="paragraph">
 <p>Open source developers often use open source libraries developed by
 other people. This is a natural, and awesome part of a healthy
-ecosystem. But Bitcoin software deals with real money, and as such it
-needs to be extra careful when choosing which third party libraries it
-should depend on.</p>
+ecosystem. But Bitcoin software deals with real money, and as such,
+developers need to be extra careful when choosing which third party
+libraries the software should depend on.</p>
 </div>
 <div class="paragraph">
 <p>In a
@@ -3186,7 +3186,7 @@ really hard to
 <a href="https://github.com/bitcoin/bitcoin/blob/master/doc/dependencies.md">minimize
 it&#8217;s exposure to third party libraries</a>. Of course, you can&#8217;t
 eradicate all external dependencies, or you&#8217;d have to write everything
-from font rendering to implementation of system calls yourself.</p>
+from font rendering to implementation of system libraries yourself.</p>
 </div>
 </div>
 <div class="sect2">
@@ -3327,8 +3327,8 @@ examples from GitHub.</p>
 <h3 id="_funding"><a class="anchor" href="#_funding"></a>7.6. Funding</h3>
 <div class="paragraph">
 <p>Lots of people work with Bitcoin open source development, for Bitcoin
-Core or for other projects. Some do it on their spare time without
-getting any compensation, but many developers are also getting paid to
+Core or for other projects. Many do it on their spare time without
+getting any compensation, but some developers are also getting paid to
 do it.</p>
 </div>
 <div class="paragraph">
@@ -3373,7 +3373,7 @@ good thing or a bad thing. On one hand we&#8217;d get even better systems
 with more funding, but on the other hand we&#8217;d get almost as good a
 system with less funding. The <a href="https://coredev.tech/">coredev.tech</a> he
 mentions is an initiative by developers to meet in person to discuss
-proposals, review code, and meet collabortors in person.</p>
+proposals, review code, and meet collaborators in person.</p>
 </div>
 </div>
 <div class="sect2">
@@ -3420,12 +3420,9 @@ investing if they felt confident about the activation timeframe.</p>
 <div class="paragraph">
 <p>Eventually, this dispute got resolved through a new proposal from
 David Harding and Russel O&#8217;Connor called <em>Speedy Trial</em>, which would
-be a comparatively short signaling period to give miners a chance to
-lock in activation of Taproot, or fail fast. If they do activate
-within that window, then Taproot activates approximately 6 months
-later. If they don&#8217;t, then the community has gained some new knowledge
-about the miners' intentions, and can make a new proposal for
-deployment. This upgrade is covered in more detail in <a href="#upgrading">Chapter 5, <em>Upgrading</em></a>.</p>
+set a comparatively short signaling period to give miners a chance to
+lock in activation of Taproot, or fail fast. This upgrade is covered
+in more detail in <a href="#upgrading">Chapter 5, <em>Upgrading</em></a>.</p>
 </div>
 <div class="paragraph">
 <p>Someone not used to Bitcoin&#8217;s development process would probably think
@@ -3499,12 +3496,12 @@ inward, and layered scaling and discuss whether they do or don&#8217;t
 interfere with Bitcoin&#8217;s value proposition.</p>
 </div>
 <div class="paragraph">
-<p>Different people ascribe different definitions to the word scale, such as
+<p>Different people ascribe different definitions to the word scaling, such as
 increasing the transaction capacity of the blockchain, using the
 blockchain more efficiently, or developing systems on top of Bitcoin.</p>
 </div>
 <div class="paragraph">
-<p>In the context of Bitcoin, and for this guide, we will define scaling as
+<p>In the context of Bitcoin, and of this book, we will define scaling as
 <em>increasing Bitcoin&#8217;s usage capacity without compromising its
 censorship resistance</em>. This definition would encompass several
 different kinds of changes, for example:</p>
@@ -3649,7 +3646,7 @@ its user.</p>
 block size limit. This would require some full nodes to upgrade their
 hardware to keep up with the increasing computational
 demands. The downside is that it happens at the cost of
-centralization, as was discussed in the previous section and more
+decentralization, as was discussed in the previous section and more
 in-depth in <a href="#_full_node_decentralization">Section 1.2, &#8220;Full node decentralization&#8221;</a>.</p>
 </div>
 <div class="paragraph">
@@ -3818,10 +3815,12 @@ different versions of Bitcoin Core going back to version 0.8.</p>
 <div class="title">Figure 7. Initial block download performance of various versions of Bitcoin Core. On the Y-axis is the block height synced and on the X-axis is the time it took to sync to that height. Source: <a href="https://blog.lopp.net/bitcoin-core-performance-evolution/" class="bare">https://blog.lopp.net/bitcoin-core-performance-evolution/</a></div>
 </div>
 <div class="paragraph">
-<p>The different lines represent different versions of Bitcoin Core. The leftmost
-line is the latest; version 22.0, released in September 2021, took 396 minutes
-to fully sync. The rightmost one is version 0.8 from November 2013, which took
-3452 minutes. All of this, roughly 10x, improvement is due to inward scaling.</p>
+<p>The different lines represent different versions of Bitcoin Core. The
+leftmost line is the latest one used in this test; version 22.0,
+released in September 2021, which took 396 minutes to fully sync. The
+rightmost one is version 0.8 from November 2013, which took 3452
+minutes. All of this, roughly 10x, improvement is due to inward
+scaling.</p>
 </div>
 <div class="paragraph">
 <p>The improvements could be categorized as either space (RAM, disk,
@@ -3921,7 +3920,7 @@ be bad for your own or your payees' privacy. In the batching case, a
 payee will know that all these outputs are from you to other payees
 (except possibly the change). In the UTXO consolidation case, you
 reveal that the outputs you consolidate belong to the same wallet. So
-you have to make a trade-off between cost efficiency and privacy.</p>
+you may have to make a trade-off between cost efficiency and privacy.</p>
 </div>
 </div>
 <div class="sect3">
@@ -3945,14 +3944,15 @@ on a start transaction that&#8217;s put on the blockchain, as illustrated in
 <div class="title">Figure 12. A typical layer 2 protocol on top of Bitcoin, layer 1.</div>
 </div>
 <div class="paragraph">
-<p>How this start transaction is created varies widely, but a common
-theme is that the participants create a number of semi-signed
-transactions that spend the output of the start transaction in
-different ways prior to publishing the start transaction. A
-semi-signed transaction can be made fully signed and put on the
-blockchain if someone misbehaves to punish them. This keeps the
-participants' incentives aligned so that the protocol can work in a
-trustless way.</p>
+<p>How this start transaction is created varies between protocols, but a
+common theme is that the participants create an unsigned start
+transaction. Then they create a number of pre-signed punishment
+transactions that spend the output of the start transaction in various
+ways. Then the start transaction is fully signed and published to the
+blockchain. The punishment transactions can then be fully signed and
+published to the blockchain to punish a misbehaving party. This
+incentivizes the participants to keep their promises so that the
+protocol can work in a trustless way.</p>
 </div>
 <div class="paragraph">
 <p>After the start transaction is on the blockchain, the protocol can do
